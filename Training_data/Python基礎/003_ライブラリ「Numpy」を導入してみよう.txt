@@ -1,0 +1,40 @@
+# ライブラリ「Numpy」を導入してみよう
+
+## Numpyを使ってみよう
+
+import numpy as np
+
+a = [1.5, 2.5, 3.5]
+b = [1.0, 2.0, 3.0]
+c = a + b
+
+print(c)
+
+a_matrix = np.array(a)
+b_matrix = np.array(b)
+c_matrix = a_matrix + b_matrix
+
+print(c_matrix)
+
+
+## NumPyを使って行列の積を計算してみよう
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+C = np.dot(A, B)
+
+print(C)
+
+
+## NumPyをニューラルネットワークに導入してみよう
+
+import numpy as np
+
+x = np.array([2.0, 1.0, 0.5])
+w_x = np.array([[0.5, -0.5, -2.0], [-1.5, 1.2, -0.8], [1.0, -2.0, 0.3]])
+w_u = np.array([1.4, -2.0, -1.0])
+
+u = np.dot(x, w_x)
+y = np.dot(u, w_u)
+
+print(y)

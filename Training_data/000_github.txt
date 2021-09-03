@@ -1,0 +1,3 @@
+%cd /content/drive/My Drive/Colab Notebooks/
+
+!git clone https://github.com/AIkenkyujo/Training_data_Shinetsu.git

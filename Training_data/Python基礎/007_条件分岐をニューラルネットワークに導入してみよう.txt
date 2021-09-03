@@ -1,0 +1,77 @@
+### コピー元として使用するプログラミングコード
+import numpy as np
+
+def step (x):
+    y = x > 0 
+    return y.astype(np.int)
+
+data = []
+data_file = open("gaibu_data.csv", "r",encoding="UTF-8")
+for line in data_file:
+    line = line.rstrip("\n").split(",")
+    data.append([float(line[0]), float(line[1]), float(line[2]) , float(line[3]) , float(line[4])])
+data_file.close()
+
+for x in data:
+    w_x = np.array([[0.46, 0.43, -0.31, 0.16],
+                    [-0.31, 0.08, 0.18, -0.52],
+                    [-0.67, 0.27, -0.19, -0.05],
+                    [0.02, 0.04, 0.10, -0.35],
+                    [-0.87, 0.65, 0.15, -0.12]])
+
+    w_u1 = np.array([[-0.68, 0.01],
+                    [0.10, 0.50],
+                    [-0.10, -0.21],
+                    [-1.25, 0.50]])
+
+    w_u2 =  np.array([0.43, -0.19])
+
+    u1 = np.dot(x, w_x)
+    z1 = step(u1)
+    u2 = np.dot(z1, w_u1)
+    z2 = step(u2)
+    u3 = np.dot(z2, w_u2)
+    y = step(u3)
+    print(y)
+
+### 全体のソースコード
+
+
+import numpy as np
+
+def step (x):
+    y = x > 0 
+    return y.astype(np.int)
+
+data = []
+data_file = open("gaibu_data.csv", "r",encoding="UTF-8")
+for line in data_file:
+    line = line.rstrip("＼n").split(",")
+    data.append([float(line[0]), float(line[1]), float(line[2]) , float(line[3]) , float(line[4])])
+data_file.close()
+
+for x in data:
+    w_x = np.array([[0.46, 0.43, -0.31, 0.16],
+                    [-0.31, 0.08, 0.18, -0.52],
+                    [-0.67, 0.27, -0.19, -0.05],
+                    [0.02, 0.04, 0.10, -0.35],
+                    [-0.87, 0.65, 0.15, -0.12]])
+
+    w_u1 = np.array([[-0.68, 0.01],
+                    [0.10, 0.50],
+                    [-0.10, -0.21],
+                    [-1.25, 0.50]])
+
+    w_u2 =  np.array([0.43, -0.19])
+
+    u1 = np.dot(x, w_x)
+    z1 = step(u1)
+    u2 = np.dot(z1, w_u1)
+    z2 = step(u2)
+    u3 = np.dot(z2, w_u2)
+    y = step(u3)
+
+    if y == 0:
+        print("あなたは女性的な思考です。")
+    else:
+        print("あなたは男性的な思考です。")
